@@ -1,10 +1,18 @@
 import streamlit as st
 import numpy as np
 import pickle
+import os
+
+# Define the correct paths to the model and scaler
+model_path = os.path.join("models", "V1", "stream_predict.pkl")
+scaler_path = os.path.join("models", "V1", "scaler.pkl")
 
 # Load model and scaler
-model = pickle.load(open("stream_predict.pkl", "rb"))
-scaler = pickle.load(open("scaler.pkl", "rb"))
+with open(model_path, "rb") as model_file:
+    model = pickle.load(model_file)
+
+with open(scaler_path, "rb") as scaler_file:
+    scaler = pickle.load(scaler_file)
 
 # Set page config
 st.set_page_config(page_title="Student Stream Predictor", layout="centered")
